@@ -18,8 +18,9 @@ eframe = { version = "0.28", default-features = false, features = [
     "glow",          # Use the glow rendering backend. Alternative: "wgpu".
     "persistence",   # Enable restoring app state when restarting the app.
 ] }
-rfd = "0.13"
+rfd = { version = "0.13", default-features = false, features = ["xdg-portal", "async-std"] }
 log = "0.4"
+bytes = "1"
 
 lluvia-media = { version = "0.0.1" } #{ path = "../lluvia-rs/crates/lluvia-media" }
 

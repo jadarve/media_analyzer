@@ -14,4 +14,3 @@ impl Panel for TopBarPanel {
         });
     }
 }
-

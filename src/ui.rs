@@ -13,4 +13,3 @@ pub(crate) trait Panel {
 pub(crate) trait View {
     fn ui(&mut self, ui: &mut egui::Ui);
 }
-

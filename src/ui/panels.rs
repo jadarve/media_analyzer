@@ -31,4 +31,3 @@ impl Panel for AppPanels {
         self.right_panel.show(ctx);
     }
 }
-

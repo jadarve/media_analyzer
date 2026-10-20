@@ -12,4 +12,3 @@ impl Panel for RightSidePanel {
             });
     }
 }
-
