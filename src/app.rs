@@ -1,39 +1,21 @@
-use egui::text_selection::visuals;
-
-use std::fmt::format;
-use std::future::Future;
-use std::sync::mpsc;
-
-use lluvia_media::containers::ts;
-
-use crate::mediadoc::ui::{views, Updatable};
+use crate::ui::{panels::AppPanels, theme, views::TsView, Panel, View};
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
-#[derive(serde::Deserialize, serde::Serialize)]
+#[derive(Default, serde::Deserialize, serde::Serialize)]
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
 pub struct MediadocApp {
-    // What's the app made of?
     #[serde(skip)]
-    ts_view: views::ts_view::TsView,
-}
+    panels: AppPanels,
 
-impl Default for MediadocApp {
-    fn default() -> Self {
-        Self {
-            ts_view: Default::default(),
-        }
-    }
+    #[serde(skip)]
+    ts_view: TsView,
 }
 
 impl MediadocApp {
     /// Called once before the first frame.
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
-        // This is also where you can customize the look and feel of egui using
-        // `cc.egui_ctx.set_visuals` and `cc.egui_ctx.set_fonts`.
-
-        let visuals = egui::Visuals::light();
-
-        cc.egui_ctx.set_visuals(visuals);
+        // Customize the look and feel of egui:
+        theme::apply(&cc.egui_ctx);
 
         // Load previous app state (if any).
         // Note that you must enable the `persistence` feature for this to work.
@@ -41,7 +23,7 @@ impl MediadocApp {
             return eframe::get_value(storage, eframe::APP_KEY).unwrap_or_default();
         }
 
-        Default::default()
+        Self::default()
     }
 }
 
@@ -52,18 +34,11 @@ impl eframe::App for MediadocApp {
     }
 
     /// Called each time the UI needs repainting, which may be many times per second.
-    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
-        self.ts_view.update(ctx, frame)
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        self.panels.show(ctx);
+
+        egui::CentralPanel::default().show(ctx, |ui| {
+            self.ts_view.ui(ui);
+        });
     }
-}
-
-#[cfg(not(target_arch = "wasm32"))]
-fn execute<F: Future<Output = ()> + Send + 'static>(f: F) {
-    // this is stupid... use any executor of your choice instead
-    std::thread::spawn(move || futures::executor::block_on(f));
-}
-
-#[cfg(target_arch = "wasm32")]
-fn execute<F: Future<Output = ()> + 'static>(f: F) {
-    wasm_bindgen_futures::spawn_local(f);
 }

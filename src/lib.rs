@@ -3,4 +3,5 @@
 mod app;
 pub use app::MediadocApp;
 
-pub(crate) mod mediadoc;
+pub(crate) mod loader;
+pub(crate) mod ui;
