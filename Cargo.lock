@@ -3,22 +3,6 @@
 version = 3
 
 [[package]]
-name = "Media-analyzer"
-version = "0.1.0"
-dependencies = [
- "bytes",
- "eframe",
- "egui",
- "env_logger",
- "lluvia-media",
- "log",
- "rfd",
- "serde",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
 name = "ab_glyph"
 version = "0.2.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1732,6 +1716,22 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62bb907fe88d54d8d9ce32a3cceab4218ed2f6b7d35617cafe9adf84e43919cb"
 dependencies = [
  "libc",
+]
+
+[[package]]
+name = "media_analyzer"
+version = "0.1.0"
+dependencies = [
+ "bytes",
+ "eframe",
+ "egui",
+ "env_logger",
+ "lluvia-media",
+ "log",
+ "rfd",
+ "serde",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]

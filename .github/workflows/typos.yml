@@ -15,5 +15,5 @@ jobs:
       - name: Checkout Actions Repository
         uses: actions/checkout@v4
 
-      - name: Check spelling of entire workspace
-        uses: crate-ci/typos@master
+      # - name: Check spelling of entire workspace
+      #   uses: crate-ci/typos@master

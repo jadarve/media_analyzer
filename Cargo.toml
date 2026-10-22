@@ -1,5 +1,5 @@
 [package]
-name = "Media-analyzer"
+name = "media_analyzer"
 version = "0.1.0"
 authors = ["Juan Adarve <juanda0718@gmail.com>"]
 edition = "2021"
