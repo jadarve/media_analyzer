@@ -1719,7 +1719,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "media_analyzer"
+name = "mediadoc"
 version = "0.1.0"
 dependencies = [
  "bytes",
