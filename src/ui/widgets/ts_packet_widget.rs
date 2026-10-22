@@ -241,13 +241,19 @@ impl<'a> TsPacketWidget<'a> {
                         .show(ui, |ui| {
                             // Header row
                             ui.label(RichText::new("Offset").monospace().weak());
-                            ui.label(
-                                RichText::new(
-                                    "00 01 02 03 04 05 06 07  08 09 0A 0B 0C 0D 0E 0F",
-                                )
-                                .monospace()
-                                .weak(),
-                            );
+                            ui.horizontal(|ui| {
+                                ui.spacing_mut().item_spacing.x = 4.0;
+                                for col_idx in 0..16 {
+                                    if col_idx == 8 {
+                                        ui.add_space(6.0);
+                                    }
+                                    ui.label(
+                                        RichText::new(format!("{col_idx:02X}"))
+                                            .monospace()
+                                            .weak(),
+                                    );
+                                }
+                            });
                             ui.label(RichText::new("ASCII").monospace().weak());
                             ui.end_row();
 
