@@ -1,5 +1,5 @@
 [package]
-name = "mediadoc"
+name = "Media-analyzer"
 version = "0.1.0"
 authors = ["Juan Adarve <juanda0718@gmail.com>"]
 edition = "2021"
@@ -18,7 +18,10 @@ eframe = { version = "0.28", default-features = false, features = [
     "glow",          # Use the glow rendering backend. Alternative: "wgpu".
     "persistence",   # Enable restoring app state when restarting the app.
 ] }
-rfd = { version = "0.13", default-features = false, features = ["xdg-portal", "async-std"] }
+rfd = { version = "0.13", default-features = false, features = [
+    "xdg-portal",
+    "async-std",
+] }
 log = "0.4"
 bytes = "1"
 
