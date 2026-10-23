@@ -12,11 +12,11 @@ impl LeftToolbarPanel {
 }
 
 impl Panel for LeftToolbarPanel {
-    fn show(&mut self, ctx: &egui::Context) {
-        egui::SidePanel::left("left_tool_bar")
+    fn show(&mut self, ui: &mut egui::Ui) {
+        egui::Panel::left("left_tool_bar")
             .resizable(false)
-            .exact_width(48.0)
-            .show(ctx, |ui| {
+            .exact_size(48.0)
+            .show(ui, |ui| {
                 ui.vertical_centered(|ui| {
                     ui.add_space(8.0);
                     let open_btn = ui

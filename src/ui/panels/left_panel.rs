@@ -28,12 +28,12 @@ impl LeftSidePanel {
 }
 
 impl Panel for LeftSidePanel {
-    fn show(&mut self, ctx: &egui::Context) {
-        egui::SidePanel::left("left_side_panel")
+    fn show(&mut self, ui: &mut egui::Ui) {
+        egui::Panel::left("left_side_panel")
             .resizable(true)
-            .default_width(250.0)
-            .min_width(180.0)
-            .show(ctx, |ui| {
+            .default_size(250.0)
+            .min_size(180.0)
+            .show(ui, |ui| {
                 ui.heading("TS Packets");
                 if let Some(container) = &self.container {
                     ui.label(

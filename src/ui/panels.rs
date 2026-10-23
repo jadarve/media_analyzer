@@ -23,11 +23,11 @@ pub(crate) struct AppPanels {
 }
 
 impl Panel for AppPanels {
-    fn show(&mut self, ctx: &egui::Context) {
-        self.top_bar.show(ctx);
-        self.bottom_panel.show(ctx);
-        self.left_toolbar.show(ctx);
-        self.left_panel.show(ctx);
-        self.right_panel.show(ctx);
+    fn show(&mut self, ui: &mut egui::Ui) {
+        self.top_bar.show(ui);
+        self.bottom_panel.show(ui);
+        self.left_toolbar.show(ui);
+        self.left_panel.show(ui);
+        self.right_panel.show(ui);
     }
 }
