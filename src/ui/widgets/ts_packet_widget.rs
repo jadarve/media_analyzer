@@ -232,7 +232,7 @@ impl<'a> TsPacketWidget<'a> {
             ui.add_space(4.0);
 
             egui::Frame::canvas(ui.style())
-                .inner_margin(egui::Margin::same(8.0))
+                .inner_margin(egui::Margin::same(8))
                 .show(ui, |ui| {
                     egui::Grid::new("ts_packet_hex_dump_grid")
                         .num_columns(3)

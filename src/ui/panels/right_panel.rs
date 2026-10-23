@@ -4,10 +4,10 @@ use crate::ui::Panel;
 pub(crate) struct RightSidePanel {}
 
 impl Panel for RightSidePanel {
-    fn show(&mut self, ctx: &egui::Context) {
-        egui::SidePanel::right("right_side_panel")
+    fn show(&mut self, ui: &mut egui::Ui) {
+        egui::Panel::right("right_side_panel")
             .resizable(true)
-            .show(ctx, |ui| {
+            .show(ui, |ui| {
                 ui.heading("Right side panel!");
             });
     }

@@ -6,7 +6,7 @@ use crate::ui::{panels::AppPanels, theme, views::TsView, Panel, View};
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[derive(Default, serde::Deserialize, serde::Serialize)]
 #[serde(default)] // if we add new fields, give them default values when deserializing old state
-pub struct MediadocApp {
+pub struct MediaAnalyzerApp {
     #[serde(skip)]
     loader: FileLoader,
 
@@ -20,7 +20,7 @@ pub struct MediadocApp {
     ts_view: TsView,
 }
 
-impl MediadocApp {
+impl MediaAnalyzerApp {
     /// Called once before the first frame.
     pub fn new(cc: &eframe::CreationContext<'_>) -> Self {
         // Customize the look and feel of egui:
@@ -36,14 +36,14 @@ impl MediadocApp {
     }
 }
 
-impl eframe::App for MediadocApp {
+impl eframe::App for MediaAnalyzerApp {
     /// Called by the frame work to save state before shutdown.
     fn save(&mut self, storage: &mut dyn eframe::Storage) {
         eframe::set_value(storage, eframe::APP_KEY, self);
     }
 
     /// Called each time the UI needs repainting, which may be many times per second.
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
         if let Some(result) = self.loader.poll() {
             match result {
                 Ok(loaded_file) => {
@@ -63,10 +63,10 @@ impl eframe::App for MediadocApp {
             }
         }
 
-        self.panels.show(ctx);
+        self.panels.show(ui);
 
         if self.panels.left_toolbar.take_open_file_request() {
-            self.loader.open_file_dialog(ctx);
+            self.loader.open_file_dialog(ui.ctx());
         }
 
         if self.panels.left_panel.take_selection_changed() {
@@ -78,7 +78,7 @@ impl eframe::App for MediadocApp {
             self.ts_view.set_packet(selected_pkt);
         }
 
-        egui::CentralPanel::default().show(ctx, |ui| {
+        egui::CentralPanel::default().show(ui, |ui| {
             self.ts_view.ui(ui);
         });
     }

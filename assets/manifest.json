@@ -1,6 +1,6 @@
 {
-  "name": "egui Template PWA",
-  "short_name": "egui-template-pwa",
+  "name": "MediaAnalyzer",
+  "short_name": "media-analyzer",
   "icons": [
     {
       "src": "./icon-256.png",

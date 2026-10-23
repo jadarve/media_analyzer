@@ -27,10 +27,10 @@ impl BottomPanel {
 }
 
 impl Panel for BottomPanel {
-    fn show(&mut self, ctx: &egui::Context) {
-        egui::TopBottomPanel::bottom("bottom_panel")
+    fn show(&mut self, ui: &mut egui::Ui) {
+        egui::Panel::bottom("bottom_panel")
             .resizable(false)
-            .show(ctx, |ui| {
+            .show(ui, |ui| {
                 ui.horizontal(|ui| {
                     let text = egui::RichText::new(&self.status);
                     if self.is_error {
